@@ -33,7 +33,7 @@ def main():
 
     # Spawn Breakable Blocks
     breakable_blocks = []
-    for _ in range(7): # Spawn randomly placed specifically 7 green breakable blocks
+    for _ in range(5): # Spawn randomly placed specifically 5 green breakable blocks
         x = random.randint(-200, 200)
         y = random.randint(100, 300)
         block = BreakableBlock(x, y)

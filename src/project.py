@@ -20,7 +20,7 @@ def main():
     game_screen.screen.onkeypress(paddle.move_left, "Left")
 
     # Initialize Score
-    current_score = 0
+    current_score = 0 # Set to zero
 
     # Display Score
     score_display = turtle.Turtle()
@@ -29,18 +29,18 @@ def main():
     score_display.penup()
     score_display.hideturtle()
     score_display.goto(-220, 420)
-    score_display.write("High Score : {}".format(current_score), align="center", font=("Calibri", 18, "normal"))
+    score_display.write("High Score : {}".format(current_score), align="center", font=("Calibri", 18, "normal")) # Takes whatever number is there at the beginning which is zero
 
     # Spawn Breakable Blocks
     breakable_blocks = []
-    for _ in range(7):
+    for _ in range(7): # Spawn randomly placed specifically 7 green breakable blocks
         x = random.randint(-200, 200)
         y = random.randint(100, 300)
         block = BreakableBlock(x, y)
         breakable_blocks.append(block)
 
     # The interactivity between the ball and the borders
-    while current_timer >= 0:
+    while current_timer > 0: # While the timer is still greater than zero, continue everything inside
         start_time = time.time()
 
         game_screen.screen.update()
@@ -58,10 +58,10 @@ def main():
             ball.ball.dy *= -1
             current_score -= 1
             score_display.clear()
-            score_display.write("High Score : {}".format(current_score), align="center", font=("Calibri", 18, "normal"))
+            score_display.write("High Score : {}".format(current_score), align="center", font=("Calibri", 18, "normal")) # If ball hits the bottom, current score goes down by 1
             current_timer += -5
             timer_display.clear()
-            timer_display.write("Time: {}s".format(current_timer), align="center", font=("Calibri", 18, "normal"))
+            timer_display.write("Time: {}s".format(current_timer), align="center", font=("Calibri", 18, "normal")) # If ball hits bottom, timer decreases by 5 seconds
 
         if ball.ball.xcor() > 280:
             ball.ball.setx(280)
@@ -85,10 +85,10 @@ def main():
                 ball.ball.dy *= -1
                 current_score += 1
                 score_display.clear()
-                score_display.write("High Score: {}".format(current_score), align="center", font=("Calibri", 18, "normal"))
-                current_timer += 2
+                score_display.write("High Score: {}".format(current_score), align="center", font=("Calibri", 18, "normal")) # If block breaks, score goes up by 1
+                current_timer += 2 
                 timer_display.clear()
-                timer_display.write("Time: {}s".format(current_timer), align="center", font=("Calibri", 18, "normal"))
+                timer_display.write("Time: {}s".format(current_timer), align="center", font=("Calibri", 18, "normal")) # If block breaks, timer goes up by 2 seconds
 
         # Elapsed Time with delay
         elapsed_time = time.time() - start_time
@@ -110,8 +110,8 @@ def update_timer():
         game_over_display.penup()
         game_over_display.hideturtle()
         game_over_display.goto(0, 0)
-        game_over_display.write("GAME OVER", align="center", font=("Calibri", 24, "normal"))
-        time.sleep(5)
+        game_over_display.write("GAME OVER", align="center", font=("Calibri", 24, "normal")) # Spawn game over when timer reaches zero
+        time.sleep(5) # Pause the game for 5 seconds
         turtle.bye()  # Closes Game
 
 # Create Screen
@@ -173,8 +173,6 @@ class PaddleBar:
         x = self.paddle.xcor()
         x -= 20
         self.paddle.setx(x)
-
-    
 
 if __name__ == "__main__":
 

@@ -33,7 +33,7 @@ while True:
 		hit_ball.dy *= -1
 
 	if hit_ball.ycor() < -445:
-		hit_ball.sety(-445)
+		hit_ball.goto(0, 0)
 		hit_ball.dy *= -1
 		
 	if hit_ball.xcor() > 280:

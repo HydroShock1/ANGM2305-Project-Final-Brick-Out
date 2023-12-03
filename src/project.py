@@ -65,8 +65,8 @@ sketch.speed(0)
 sketch.color("black")
 sketch.penup()
 sketch.hideturtle()
-sketch.goto(0, 0)
-sketch.write("High Score : 0", align="center", font=("Calibri", 24, "normal"))
+sketch.goto(-220, 420)
+sketch.write("High Score : 0", align="center", font=("Calibri", 18, "normal"))
 
 # The interactivity between the ball and the borders
 while True:
@@ -83,6 +83,9 @@ while True:
     if ball.ball.ycor() < -445:
         ball.ball.goto(0, 0)
         ball.ball.dy *= -1
+        current_score -= 1
+        sketch.clear()
+        sketch.write("High Score : {}".format(current_score), align="center", font=("Calibri", 18, "normal"))
 
     if ball.ball.xcor() > 280:
         ball.ball.setx(280)

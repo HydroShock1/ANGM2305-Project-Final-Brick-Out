@@ -2,7 +2,7 @@
 Extreme Brick Out
 
 ## Repository
-https://github.com/HydroShock1/ANGM2305-Project-Final-Extreme-Pong
+https://github.com/HydroShock1/ANGM2305-Project-Final-Brick-Out
 
 ## Description
 This will be like a normal game of pong but with my own twist to it. There will be a timer that fluctuates due to what blocks you break. These blocks would periodically spawn as well.

@@ -7,6 +7,8 @@ import time
 import random
 
 def main():
+
+    global current_timer
     # Instances of the classes
     game_screen = GameScreen()
     ball = Ball()
@@ -31,7 +33,7 @@ def main():
 
     # Spawn Breakable Blocks
     breakable_blocks = []
-    for _ in range(5):
+    for _ in range(7):
         x = random.randint(-200, 200)
         y = random.randint(100, 300)
         block = BreakableBlock(x, y)
@@ -57,6 +59,9 @@ def main():
             current_score -= 1
             score_display.clear()
             score_display.write("High Score : {}".format(current_score), align="center", font=("Calibri", 18, "normal"))
+            current_timer += -5
+            timer_display.clear()
+            timer_display.write("Time: {}s".format(current_timer), align="center", font=("Calibri", 18, "normal"))
 
         if ball.ball.xcor() > 280:
             ball.ball.setx(280)
@@ -81,6 +86,9 @@ def main():
                 current_score += 1
                 score_display.clear()
                 score_display.write("High Score: {}".format(current_score), align="center", font=("Calibri", 18, "normal"))
+                current_timer += 2
+                timer_display.clear()
+                timer_display.write("Time: {}s".format(current_timer), align="center", font=("Calibri", 18, "normal"))
 
         # Elapsed Time with delay
         elapsed_time = time.time() - start_time
@@ -136,13 +144,13 @@ class BreakableBlock:
 class Ball:
     def __init__(self):
         self.ball = turtle.Turtle()
-        self.ball.speed(40)
+        self.ball.speed(60)
         self.ball.shape("circle")
         self.ball.color("blue")
         self.ball.penup()
         self.ball.goto(0, 0)
-        self.ball.dx = 5
-        self.ball.dy = -5
+        self.ball.dx = 10
+        self.ball.dy = -10
 
 # Paddle Bar to keep ball from hitting the bottom
 class PaddleBar:

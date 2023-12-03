@@ -76,8 +76,7 @@ def main():
         for block in breakable_blocks:
             if (block.block.ycor() + 10 > ball.ball.ycor() > block.block.ycor() - 10 and
                     block.block.xcor() - 50 < ball.ball.xcor() < block.block.xcor() + 50):
-                block.block.hideturtle()
-                breakable_blocks.remove(block)
+                block.respawn()
                 ball.ball.dy *= -1
                 current_score += 1
                 score_display.clear()
@@ -105,7 +104,7 @@ def update_timer():
         game_over_display.goto(0, 0)
         game_over_display.write("GAME OVER", align="center", font=("Calibri", 24, "normal"))
         time.sleep(5)
-        turtle.bye()  # Closes
+        turtle.bye()  # Closes Game
 
 # Create Screen
 class GameScreen:
@@ -125,6 +124,13 @@ class BreakableBlock:
         self.block.shapesize(stretch_wid=3, stretch_len=3)
         self.block.penup()
         self.block.goto(x, y)
+
+    # After block breaks, spawn a new one in a random place
+    def respawn(self):
+        x = random.randint(-200, 200)
+        y = random.randint(100, 300)
+        self.block.goto(x, y)
+        self.block.showturtle()
 
 # The bouncing ball
 class Ball:
@@ -159,6 +165,8 @@ class PaddleBar:
         x = self.paddle.xcor()
         x -= 20
         self.paddle.setx(x)
+
+    
 
 if __name__ == "__main__":
 

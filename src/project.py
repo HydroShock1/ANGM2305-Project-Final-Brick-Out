@@ -31,7 +31,7 @@ class PaddleBar:
         self.paddle.speed(0)
         self.paddle.shape("square")
         self.paddle.color("black")
-        self.paddle.shapesize(stretch_wid=2, stretch_len=6)
+        self.paddle.shapesize(stretch_wid=1, stretch_len=5)
         self.paddle.penup()
         self.paddle.goto(0, -340)
 
@@ -55,6 +55,18 @@ paddle = PaddleBar()
 game_screen.screen.listen()
 game_screen.screen.onkeypress(paddle.move_right, "Right")
 game_screen.screen.onkeypress(paddle.move_left, "Left")
+
+# Initialize Score
+current_score = 0
+
+# Display Score
+sketch = turtle.Turtle()
+sketch.speed(0)
+sketch.color("black")
+sketch.penup()
+sketch.hideturtle()
+sketch.goto(0, 0)
+sketch.write("High Score : 0", align="center", font=("Calibri", 24, "normal"))
 
 # The interactivity between the ball and the borders
 while True:

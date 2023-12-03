@@ -75,3 +75,10 @@ while True:
     if ball.ball.xcor() < -280:
         ball.ball.setx(-280)
         ball.ball.dx *= -1
+
+    # Paddle Bar Collision
+    if (-350 < ball.ball.ycor() < -330 and paddle.paddle.xcor() -60 < 
+        ball.ball.xcor() < paddle.paddle.xcor() + 60):
+        ball.ball.sety(-330)
+        ball.ball.dy *= -1
+        

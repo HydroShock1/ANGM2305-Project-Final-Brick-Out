@@ -4,50 +4,7 @@
 # Import required library
 import turtle
 
-# Create Screen
-class GameScreen:
-    def __init__(self):
-        self.screen = turtle.Screen()
-        self.screen.title("Extreme Brick Out")
-        self.screen.bgcolor("white")
-        self.screen.setup(width=600, height=900)
-
-# The bouncing ball
-class Ball:
-    def __init__(self):
-        self.ball = turtle.Turtle()
-        self.ball.speed(40)
-        self.ball.shape("circle")
-        self.ball.color("blue")
-        self.ball.penup()
-        self.ball.goto(0, 0)
-        self.ball.dx = 5
-        self.ball.dy = -5
-
-# Paddle Bar to keep ball from hitting the bottom
-class PaddleBar:
-    def __init__(self):
-        self.paddle = turtle.Turtle()
-        self.paddle.speed(0)
-        self.paddle.shape("square")
-        self.paddle.color("black")
-        self.paddle.shapesize(stretch_wid=1, stretch_len=5)
-        self.paddle.penup()
-        self.paddle.goto(0, -340)
-
-    # Moving the paddle left and right
-    def move_right(self):
-        x = self.paddle.xcor()
-        x += 20
-        self.paddle.setx(x)
-
-    def move_left(self):
-        x = self.paddle.xcor()
-        x -= 20
-        self.paddle.setx(x)
-
 def main():
-
     # Instances of the classes
     game_screen = GameScreen()
     ball = Ball()
@@ -106,6 +63,49 @@ def main():
             ball.ball.xcor() < paddle.paddle.xcor() + 60):
             ball.ball.sety(-330)
             ball.ball.dy *= -1
+
+
+# Create Screen
+class GameScreen:
+    def __init__(self):
+        self.screen = turtle.Screen()
+        self.screen.title("Extreme Brick Out")
+        self.screen.bgcolor("white")
+        self.screen.setup(width=600, height=900)
+
+# The bouncing ball
+class Ball:
+    def __init__(self):
+        self.ball = turtle.Turtle()
+        self.ball.speed(40)
+        self.ball.shape("circle")
+        self.ball.color("blue")
+        self.ball.penup()
+        self.ball.goto(0, 0)
+        self.ball.dx = 5
+        self.ball.dy = -5
+
+# Paddle Bar to keep ball from hitting the bottom
+class PaddleBar:
+    def __init__(self):
+        self.paddle = turtle.Turtle()
+        self.paddle.speed(0)
+        self.paddle.shape("square")
+        self.paddle.color("black")
+        self.paddle.shapesize(stretch_wid=1, stretch_len=5)
+        self.paddle.penup()
+        self.paddle.goto(0, -340)
+
+    # Moving the paddle left and right
+    def move_right(self):
+        x = self.paddle.xcor()
+        x += 20
+        self.paddle.setx(x)
+
+    def move_left(self):
+        x = self.paddle.xcor()
+        x -= 20
+        self.paddle.setx(x)
 
 if __name__ == "__main__":
     main()

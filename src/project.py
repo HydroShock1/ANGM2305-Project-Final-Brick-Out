@@ -4,6 +4,7 @@
 # Import required library
 import turtle
 import time
+import random
 
 def main():
     # Instances of the classes
@@ -27,6 +28,14 @@ def main():
     score_display.hideturtle()
     score_display.goto(-220, 420)
     score_display.write("High Score : {}".format(current_score), align="center", font=("Calibri", 18, "normal"))
+
+    # Spawn Breakable Blocks
+    breakable_blocks = []
+    for _ in range(5):
+        x = random.randint(-200, 200)
+        y = random.randint(100, 300)
+        block = BreakableBlock(x, y)
+        breakable_blocks.append(block)
 
     # The interactivity between the ball and the borders
     while current_timer >= 0:
@@ -63,6 +72,17 @@ def main():
             ball.ball.sety(-330)
             ball.ball.dy *= -1
 
+        # Check collisions of breakable blocks
+        for block in breakable_blocks:
+            if (block.block.ycor() + 10 > ball.ball.ycor() > block.block.ycor() - 10 and
+                    block.block.xcor() - 50 < ball.ball.xcor() < block.block.xcor() + 50):
+                block.block.hideturtle()
+                breakable_blocks.remove(block)
+                ball.ball.dy *= -1
+                current_score += 1
+                score_display.clear()
+                score_display.write("High Score: {}".format(current_score), align="center", font=("Calibri", 18, "normal"))
+
         # Elapsed Time with delay
         elapsed_time = time.time() - start_time
         time.sleep(max(0, 0.01 - elapsed_time)) 
@@ -94,6 +114,17 @@ class GameScreen:
         self.screen.title("Extreme Brick Out")
         self.screen.bgcolor("white")
         self.screen.setup(width=600, height=900)
+
+# Create Breakable Blocks
+class BreakableBlock:
+    def __init__(self, x, y):
+        self.block = turtle.Turtle()
+        self.block.speed(0)
+        self.block.shape("square")
+        self.block.color("green")
+        self.block.shapesize(stretch_wid=3, stretch_len=3)
+        self.block.penup()
+        self.block.goto(x, y)
 
 # The bouncing ball
 class Ball:
@@ -132,7 +163,7 @@ class PaddleBar:
 if __name__ == "__main__":
 
     # Initialize Timer
-    current_timer = 5
+    current_timer = 60
 
     # Display Timer
     timer_display = turtle.Turtle()

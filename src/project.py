@@ -30,6 +30,14 @@ def main():
     score_display.goto(-220, 420)
     score_display.write("High Score : {}".format(current_score), align="center", font=("Calibri", 18, "normal"))
 
+    # Display Timer
+    timer_display = turtle.Turtle()
+    timer_display.speed(0)
+    timer_display.color("black")
+    timer_display.penup()
+    timer_display.hideturtle()
+    timer_display.goto(220, 420)
+    timer_display.write("Time: {}s".format(current_timer), align="center", font=("Calibri", 18, "normal"))
 
     # The interactivity between the ball and the borders
     while True:

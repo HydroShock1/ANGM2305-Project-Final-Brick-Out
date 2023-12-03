@@ -4,6 +4,7 @@
 # Import required library
 import turtle
 
+# Create Screen
 class GameScreen:
     def __init__(self):
         self.screen = turtle.Screen()
@@ -11,6 +12,7 @@ class GameScreen:
         self.screen.bgcolor("white")
         self.screen.setup(width=600, height=900)
 
+# The bouncing ball
 class Ball:
     def __init__(self):
         self.ball = turtle.Turtle()
@@ -22,6 +24,7 @@ class Ball:
         self.ball.dx = 5
         self.ball.dy = -5
 
+# Paddle Bar to keep ball from hitting the bottom
 class PaddleBar:
     def __init__(self):
         self.paddle = turtle.Turtle()
@@ -32,6 +35,7 @@ class PaddleBar:
         self.paddle.penup()
         self.paddle.goto(0, -340)
 
+    # Moving the paddle left and right
     def move_right(self):
         x = self.paddle.xcor()
         x += 20

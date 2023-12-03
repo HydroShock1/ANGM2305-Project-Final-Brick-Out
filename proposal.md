@@ -1,5 +1,5 @@
 # Title
-Extreme Pong
+Extreme Brick Out
 
 ## Repository
 https://github.com/HydroShock1/ANGM2305-Project-Final-Extreme-Pong

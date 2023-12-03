@@ -46,62 +46,67 @@ class PaddleBar:
         x -= 20
         self.paddle.setx(x)
 
-# Instances of the classes
-game_screen = GameScreen()
-ball = Ball()
-paddle = PaddleBar()
+def main():
 
-# Keyboard inputs
-game_screen.screen.listen()
-game_screen.screen.onkeypress(paddle.move_right, "Right")
-game_screen.screen.onkeypress(paddle.move_left, "Left")
+    # Instances of the classes
+    game_screen = GameScreen()
+    ball = Ball()
+    paddle = PaddleBar()
 
-# Initialize Score
-current_score = 0
+    # Keyboard inputs
+    game_screen.screen.listen()
+    game_screen.screen.onkeypress(paddle.move_right, "Right")
+    game_screen.screen.onkeypress(paddle.move_left, "Left")
 
-# Initialize Timer
-current_timer = 60
+    # Initialize Score
+    current_score = 0
 
-# Display Score
-score_display = turtle.Turtle()
-score_display.speed(0)
-score_display.color("black")
-score_display.penup()
-score_display.hideturtle()
-score_display.goto(-220, 420)
-score_display.write("High Score : {}".format(current_score), align="center", font=("Calibri", 18, "normal"))
+    # Initialize Timer
+    current_timer = 60
+
+    # Display Score
+    score_display = turtle.Turtle()
+    score_display.speed(0)
+    score_display.color("black")
+    score_display.penup()
+    score_display.hideturtle()
+    score_display.goto(-220, 420)
+    score_display.write("High Score : {}".format(current_score), align="center", font=("Calibri", 18, "normal"))
 
 
-# The interactivity between the ball and the borders
-while True:
-    game_screen.screen.update()
+    # The interactivity between the ball and the borders
+    while True:
+        game_screen.screen.update()
 
-    ball.ball.setx(ball.ball.xcor() + ball.ball.dx)
-    ball.ball.sety(ball.ball.ycor() + ball.ball.dy)
+        ball.ball.setx(ball.ball.xcor() + ball.ball.dx)
+        ball.ball.sety(ball.ball.ycor() + ball.ball.dy)
 
-    # Bouncing off borders
-    if ball.ball.ycor() > 445:
-        ball.ball.sety(445)
-        ball.ball.dy *= -1
+        # Bouncing off borders
+        if ball.ball.ycor() > 445:
+            ball.ball.sety(445)
+            ball.ball.dy *= -1
 
-    if ball.ball.ycor() < -445:
-        ball.ball.goto(0, 0)
-        ball.ball.dy *= -1
-        current_score -= 1
-        score_display.clear()
-        score_display.write("High Score : {}".format(current_score), align="center", font=("Calibri", 18, "normal"))
+        if ball.ball.ycor() < -445:
+            ball.ball.goto(0, 0)
+            ball.ball.dy *= -1
+            current_score -= 1
+            score_display.clear()
+            score_display.write("High Score : {}".format(current_score), align="center", font=("Calibri", 18, "normal"))
 
-    if ball.ball.xcor() > 280:
-        ball.ball.setx(280)
-        ball.ball.dx *= -1
+        if ball.ball.xcor() > 280:
+            ball.ball.setx(280)
+            ball.ball.dx *= -1
 
-    if ball.ball.xcor() < -280:
-        ball.ball.setx(-280)
-        ball.ball.dx *= -1
+        if ball.ball.xcor() < -280:
+            ball.ball.setx(-280)
+            ball.ball.dx *= -1
 
-    # Paddle Bar Collision
-    if (-350 < ball.ball.ycor() < -330 and paddle.paddle.xcor() -60 < 
-        ball.ball.xcor() < paddle.paddle.xcor() + 60):
-        ball.ball.sety(-330)
-        ball.ball.dy *= -1
+        # Paddle Bar Collision
+        if (-350 < ball.ball.ycor() < -330 and paddle.paddle.xcor() -60 < 
+            ball.ball.xcor() < paddle.paddle.xcor() + 60):
+            ball.ball.sety(-330)
+            ball.ball.dy *= -1
+
+if __name__ == "__main__":
+    main()
         

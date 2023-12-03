@@ -47,14 +47,13 @@ sc.listen()
 sc.onkeypress(paddleright, "Right")
 sc.onkeypress(paddleleft, "Left")
  
-
 # The interactivity between the ball and the borders
 while True:
 	sc.update()
 
 	hit_ball.setx(hit_ball.xcor()+hit_ball.dx)
 	hit_ball.sety(hit_ball.ycor()+hit_ball.dy)
-
+	
 	# Bouncing off borders
 	if hit_ball.ycor() > 445:
 		hit_ball.sety(445)
@@ -71,6 +70,5 @@ while True:
 	if hit_ball.xcor() < -280:
 		hit_ball.setx(-280)
 		hit_ball.dx *= -1
-
 
 

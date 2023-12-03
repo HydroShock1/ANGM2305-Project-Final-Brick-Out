@@ -3,6 +3,7 @@
 
 # Import required library
 import turtle
+import time
 
 def main():
     # Instances of the classes
@@ -18,9 +19,6 @@ def main():
     # Initialize Score
     current_score = 0
 
-    # Initialize Timer
-    current_timer = 60
-
     # Display Score
     score_display = turtle.Turtle()
     score_display.speed(0)
@@ -30,17 +28,10 @@ def main():
     score_display.goto(-220, 420)
     score_display.write("High Score : {}".format(current_score), align="center", font=("Calibri", 18, "normal"))
 
-    # Display Timer
-    timer_display = turtle.Turtle()
-    timer_display.speed(0)
-    timer_display.color("black")
-    timer_display.penup()
-    timer_display.hideturtle()
-    timer_display.goto(220, 420)
-    timer_display.write("Time: {}s".format(current_timer), align="center", font=("Calibri", 18, "normal"))
-
     # The interactivity between the ball and the borders
-    while True:
+    while current_timer >= 0:
+        start_time = time.time()
+
         game_screen.screen.update()
 
         ball.ball.setx(ball.ball.xcor() + ball.ball.dx)
@@ -72,6 +63,29 @@ def main():
             ball.ball.sety(-330)
             ball.ball.dy *= -1
 
+        # Elapsed Time with delay
+        elapsed_time = time.time() - start_time
+        time.sleep(max(0, 0.01 - elapsed_time)) 
+
+
+# Update time accordingly until timer reaches zero
+def update_timer():
+    global current_timer
+    timer_display.clear()
+    timer_display.write("Time: {}s".format(current_timer), align="center", font=("Calibri", 18, "normal"))
+    current_timer -= 1
+    if current_timer > 0:
+        turtle.ontimer(update_timer, 1000)
+    else:
+        game_over_display = turtle.Turtle()
+        game_over_display.speed(0)
+        game_over_display.color("red")
+        game_over_display.penup()
+        game_over_display.hideturtle()
+        game_over_display.goto(0, 0)
+        game_over_display.write("GAME OVER", align="center", font=("Calibri", 24, "normal"))
+        time.sleep(5)
+        turtle.bye()  # Closes
 
 # Create Screen
 class GameScreen:
@@ -116,5 +130,21 @@ class PaddleBar:
         self.paddle.setx(x)
 
 if __name__ == "__main__":
+
+    # Initialize Timer
+    current_timer = 5
+
+    # Display Timer
+    timer_display = turtle.Turtle()
+    timer_display.speed(0)
+    timer_display.color("black")
+    timer_display.penup()
+    timer_display.hideturtle()
+    timer_display.goto(220, 420)
+    timer_display.write("Time: {}s".format(current_timer), align="center", font=("Calibri", 18, "normal"))
+
+    # Update Timer
+    turtle.ontimer(update_timer, 1000)
+
     main()
         

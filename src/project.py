@@ -59,14 +59,18 @@ game_screen.screen.onkeypress(paddle.move_left, "Left")
 # Initialize Score
 current_score = 0
 
+# Initialize Timer
+current_timer = 60
+
 # Display Score
-sketch = turtle.Turtle()
-sketch.speed(0)
-sketch.color("black")
-sketch.penup()
-sketch.hideturtle()
-sketch.goto(-220, 420)
-sketch.write("High Score : 0", align="center", font=("Calibri", 18, "normal"))
+score_display = turtle.Turtle()
+score_display.speed(0)
+score_display.color("black")
+score_display.penup()
+score_display.hideturtle()
+score_display.goto(-220, 420)
+score_display.write("High Score : {}".format(current_score), align="center", font=("Calibri", 18, "normal"))
+
 
 # The interactivity between the ball and the borders
 while True:
@@ -84,8 +88,8 @@ while True:
         ball.ball.goto(0, 0)
         ball.ball.dy *= -1
         current_score -= 1
-        sketch.clear()
-        sketch.write("High Score : {}".format(current_score), align="center", font=("Calibri", 18, "normal"))
+        score_display.clear()
+        score_display.write("High Score : {}".format(current_score), align="center", font=("Calibri", 18, "normal"))
 
     if ball.ball.xcor() > 280:
         ball.ball.setx(280)
